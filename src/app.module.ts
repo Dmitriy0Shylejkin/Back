@@ -1,22 +1,22 @@
 import { SequelizeModule } from '@nestjs/sequelize';
 
-import { Module } from '@nestjs/common'; //
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { TasksModule } from './tasks/tasks.module'; //
-import { Task } from './tasks/tasks.model'; //
+import { TasksModule } from './tasks/tasks.module';
+import { Task } from './tasks/tasks.model';
 
-@Module({ 
-  controllers: [], 
-  providers: [], 
+@Module({
+  controllers: [],
+  providers: [],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`
+      envFilePath: `.${process.env.NODE_ENV}.env`,
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
       host: process.env.POSTGRES_HOST,
-      port: Number(process.env.POSTGRES_PORT),
+      port: parseInt(process.env.POSTGRES_PORT, 10),
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_DB,
@@ -24,6 +24,6 @@ import { Task } from './tasks/tasks.model'; //
       autoLoadModels: true,
     }),
     TasksModule,
-  ]
+  ],
 })
 export class AppModule {}
