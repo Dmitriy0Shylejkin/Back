@@ -2,26 +2,11 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default {
-  development: {
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    host: process.env.POSTGRES_HOST,
-    dialect: 'postgres',
-  },
-  test: {
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    host: process.env.POSTGRES_HOST,
-    dialect: 'postgres',
-  },
-  production: {
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DB,
-    host: process.env.POSTGRES_HOST,
-    dialect: 'postgres',
-  },
+module.exports = {
+  dialect: process.env.POSTGRES_DIALECT,
+  host: process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DB,
+  password: String(process.env.POSTGRES_PASSWORD),
+  username: process.env.POSTGRES_USER,
+  port: Number(process.env.POSTGRES_PORT),
 };

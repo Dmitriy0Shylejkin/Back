@@ -8,14 +8,6 @@ interface TaskCreationAttrs {
 @Table({ tableName: 'tasks' })
 export class Task extends Model<Task, TaskCreationAttrs> {
   @Column({
-    type: DataType.INTEGER,
-    unique: true,
-    autoIncrement: true,
-    primaryKey: true,
-  })
-  id: number;
-
-  @Column({
     type: DataType.STRING,
     allowNull: false,
     validate: { notNull: true, notEmpty: true },
@@ -28,4 +20,18 @@ export class Task extends Model<Task, TaskCreationAttrs> {
     defaultValue: false,
   })
   isComplete: boolean;
+
+  @Column({
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+    allowNull: false,
+  })
+  createdAt: Date;
+
+  @Column({
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+    allowNull: false,
+  })
+  updatedAt: Date;
 }

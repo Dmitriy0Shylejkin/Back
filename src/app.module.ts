@@ -1,9 +1,8 @@
 import { SequelizeModule } from '@nestjs/sequelize';
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-
 import { TasksModule } from './tasks/tasks.module';
+import { Dialect } from 'sequelize';
 import { Task } from './tasks/tasks.model';
 
 @Module({
@@ -11,10 +10,10 @@ import { Task } from './tasks/tasks.model';
   providers: [],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: '.env',
     }),
     SequelizeModule.forRoot({
-      dialect: 'postgres',
+      dialect: process.env.POSTGRES_DIALECT as Dialect,
       host: process.env.POSTGRES_HOST,
       port: parseInt(process.env.POSTGRES_PORT, 10),
       username: process.env.POSTGRES_USER,

@@ -4,7 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
 import * as cors from 'cors';
 
-dotenv.config({ path: `.${process.env.NODE_ENV}.env` });
+dotenv.config({ path: '.env' });
 
 async function start() {
   const PORT = process.env.PORT || 5000;

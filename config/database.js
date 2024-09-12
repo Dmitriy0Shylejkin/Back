@@ -1,15 +1,14 @@
 import { Sequelize } from 'sequelize';
-import dotenv from 'dotenv';
-
-dotenv.config();
+import config from './config';
 
 const sequelize = new Sequelize(
-  process.env.POSTGRES_DB,
-  process.env.POSTGRES_USER,
-  process.env.POSTGRES_PASSWORD,
+  config.database,
+  config.username,
+  config.password,
   {
-    host: process.env.POSTGRES_HOST,
-    dialect: 'postgres',
+    host: config.host,
+    dialect: config.dialect,
+    port: config.port,
   },
 );
 
